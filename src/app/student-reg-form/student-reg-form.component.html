@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="screen reg-screen">
+        <h2 class='page-header'>Student Registration Form</h2>
+        <form [formGroup]='regForm' #form="ngForm" (ngSubmit)="submit()">
+            <div *ngIf='regForm.valid' class="alert alert-success alert-sm" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <cds-icon class="alert-icon" shape="check-circle"></cds-icon>
+                        </div>
+                        <span class="alert-text">
+                            Registered Successfully
+                        </span>
+                    </div>
+                </div>
+                <button type="button" class="close" aria-label="Close">
+                    <cds-icon aria-hidden="true" shape="window-close"></cds-icon>
+                </button>
+            </div>
+            <cds-form-group layout="compact">
+                <cds-input layout='compact' control-width='shrink'>
+                    <label>Name *</label>
+                    <input formControlName='name' type='text' />
+                    <cds-control-message *ngIf="submitted  && f.name.hasError('required')" status='error'>Required
+                    </cds-control-message>
+                </cds-input>
+                <!-- <cds-radio-group layout="vertical-inline">
+                    <label>Genders *</label>
+                    <cds-radio>
+                        <label for='female'>Female</label>
+                        <input type="radio" formControlName="gender" name="gender"checked="checked" value='female' />
+                    </cds-radio>
+
+                    <cds-radio>
+                        <label for='male'>Male</label>
+                        <input type="radio" formControlName="gender" name="gender" value='male' />
+                    </cds-radio>
+                </cds-radio-group>  -->
+                <clr-radio-container clrInline class="custom-radio-wrapper">
+                    <label class='gender-label'>Gender</label>
+                    <clr-radio-wrapper>
+                        <input type="radio" clrRadio value="female" name="gender" checked formControlName="gender" />
+                        <label>Female</label>
+                    </clr-radio-wrapper>
+                    <clr-radio-wrapper>
+                        <input type="radio" clrRadio value="male" name="gender" formControlName="gender" />
+                        <label>Male</label>
+                    </clr-radio-wrapper>
+                </clr-radio-container>
+                <cds-select layout="compact" control-width='shrink'>
+                    <label>Course *</label>
+                    <select formControlName='course'>
+                        <option value="">Choose your course</option>
+                        <option *ngFor="let item of this.courseList;let i = index" [ngValue]="item.value"
+                            value="{{item.value}}">{{item.name}}</option>
+                    </select>
+                    <cds-control-message *ngIf="submitted  && f.course.hasError('required')" status='error'>Required
+                    </cds-control-message>
+                </cds-select>
+                <cds-select layout="compact" control-width='shrink'>
+                    <label>Major *</label>
+                    <select formControlName='major'>
+                        <option value="">Choose your major</option>
+                        <option *ngFor="let item of this.majorList;let i = index" [ngValue]="item.value"
+                            value="{{item.value}}">{{item.name}}</option>
+                    </select>
+                    <cds-control-message *ngIf="submitted  && f.major.hasError('required')" status='error'>Required
+                    </cds-control-message>
+                </cds-select>
+                <cds-input control-width='shrink'>
+                    <label>Email *</label>
+                    <input formControlName='email' type='email' />
+                    <cds-control-message *ngIf="submitted && f.email.hasError('required')" status='error'>Required
+                    </cds-control-message>
+                    <cds-control-message *ngIf="submitted  && f.email.hasError('email')" status='error'>Invalid Email
+                    </cds-control-message>
+                </cds-input>
+                <cds-checkbox>
+                    <label>Accept Terms & Conditions</label>
+                    <input type="checkbox" formControlName='acceptTerms' />
+                </cds-checkbox>
+                <span style="color: #e02200;font-size: 12px;" *ngIf="submitted  && f.acceptTerms.status === 'INVALID'">
+                    <cds-icon class='custom-icon' status='danger' shape='exclamation-circle'></cds-icon>Accept T&C
+                </span>
+
+
+
+                <div cds-layout='horizontal gap:lg"' class='re-btn-grp'>
+                    <cds-button type="submit" class="reg-buttons">Submit</cds-button>
+                    <cds-button type="reset" class="reg-buttons" action="outline" status="neutral" (click)="onReset()">
+                        Cancel</cds-button>
+                </div>
+            </cds-form-group>
+
+        </form>
+    </div>
+</div>

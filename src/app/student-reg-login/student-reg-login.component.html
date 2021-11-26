@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="screen login-screen">
+        <h2 class='page-header'>Login</h2>
+        <form [formGroup]='loginForm' (ngSubmit)='login()'>
+            <cds-form-group>
+                <cds-input layout='compact' control-width='shrink'>
+                    <label>User Name</label>
+                    <input formControlName='name' type='text' />
+                    <cds-control-message *ngIf="(submitted || f.name.touched) && f.name.hasError('required')"
+                        status='error'>Required
+                    </cds-control-message>
+                </cds-input>
+                <cds-input layout='compact' control-width='shrink'>
+                    <label>Password</label>
+                    <input formControlName='password' type='password' />
+                    <cds-control-message *ngIf="(submitted || f.password.touched) && f.password.hasError('required')"
+                        status='error'>Required
+                    </cds-control-message>
+                </cds-input>
+                <div cds-layout='horizontal gap:lg"' class='login-btn-grp'>
+                    <cds-button type="submit" class="reg-buttons login__submit">Login</cds-button>
+                    <a routerLink="/register">
+                        <cds-button class="reg-buttons">Register</cds-button>
+                    </a>
+                </div>
+            </cds-form-group>
+        </form>
+    </div>
+</div>

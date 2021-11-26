@@ -1,0 +1,27 @@
+<div class="content-container">
+    <div class="content-area">
+        <h2>Student Details</h2>
+        <clr-datagrid [(clrDgSelected)]="selected">
+            <clr-dg-column [clrDgField]="'id'">Student ID</clr-dg-column>
+            <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+            <clr-dg-column [clrDgField]="'course'">Course</clr-dg-column>
+            <clr-dg-column [clrDgField]="'major'">Major</clr-dg-column>
+            <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+
+            <clr-dg-row *clrDgItems='let student of studentDetails' [clrDgItem]="student">
+                <clr-dg-cell>{{student?.id}}</clr-dg-cell>
+                <clr-dg-cell>{{student?.name}}</clr-dg-cell>
+                <clr-dg-cell>{{student?.course}}</clr-dg-cell>
+                <clr-dg-cell>{{student?.major}}</clr-dg-cell>
+                <clr-dg-cell>{{student?.email}}</clr-dg-cell>
+            </clr-dg-row>
+
+            <clr-dg-footer>
+                <clr-dg-pagination #pagination [clrDgPageSize]="3">
+                    <clr-dg-page-size [clrPageSizeOptions]="[3,5]">Students per page</clr-dg-page-size>
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} students
+                </clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </div>
+</div>
